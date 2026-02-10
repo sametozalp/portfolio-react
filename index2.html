@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profesyonel Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons Library -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #e5e5e5;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism effects */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Particles canvas style */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            top: 0;
+            left: 0;
+        }
+
+        /* Section Transitions */
+        section {
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease;
+            opacity: 0.3;
+            transform: scale(0.95);
+        }
+
+        section.active-section {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Floating Nav Bar Center */
+        .nav-container {
+            position: fixed;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            width: auto;
+            min-width: 300px;
+        }
+
+        /* Animation for testimonial slider */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .testimonial-track {
+            display: flex;
+            width: calc(320px * 6);
+            animation: scroll 30s linear infinite;
+        }
+        .testimonial-track:hover {
+            animation-play-state: paused;
+        }
+
+        .skill-tag {
+            background: rgba(96, 165, 250, 0.1);
+            border: 1px solid rgba(96, 165, 250, 0.2);
+            transition: all 0.3s ease;
+        }
+        .skill-tag:hover {
+            background: rgba(96, 165, 250, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #60a5fa;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 80%;
+        }
+        .nav-link.active {
+            color: #60a5fa;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="particles-js"></canvas>
+
+    <!-- Centered Navigation -->
+    <div class="nav-container">
+        <nav class="glass px-8 py-3 rounded-full flex items-center space-x-8 shadow-2xl">
+            <a href="#home" class="nav-link active text-sm font-medium tracking-wide">Giriş</a>
+            <a href="#about" class="nav-link text-sm font-medium tracking-wide">Hakkımda</a>
+            <a href="#resume" class="nav-link text-sm font-medium tracking-wide">Özgeçmiş</a>
+            <a href="#projects" class="nav-link text-sm font-medium tracking-wide">Projeler</a>
+            <a href="#contact" class="nav-link text-sm font-medium tracking-wide">İletişim</a>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center active-section">
+        <div class="text-center px-6">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 opacity-0 translate-y-4 transition-all duration-1000" id="hero-title">
+                Merhaba, Ben <span class="gradient-text">Kaan Yılmaz</span>
+            </h1>
+            <p class="text-xl text-gray-400 mb-8 max-w-2xl mx-auto opacity-0 transition-all duration-1000 delay-300" id="hero-desc">
+                Full-Stack Geliştirici & Yazılım Mimarı. Karmaşık sorunlara zarif çözümler üretiyorum.
+            </p>
+            <div class="flex justify-center space-x-6 mb-12 opacity-0 transition-all duration-1000 delay-500" id="hero-social">
+                <a href="#" class="hover:text-blue-400 transition-colors"><i data-lucide="github"></i></a>
+                <a href="#" class="hover:text-blue-400 transition-colors"><i data-lucide="linkedin"></i></a>
+                <a href="#" class="hover:text-blue-400 transition-colors"><i data-lucide="twitter"></i></a>
+                <a href="#" class="hover:text-blue-400 transition-colors"><i data-lucide="instagram"></i></a>
+            </div>
+            <a href="#about" class="animate-bounce inline-block text-blue-400">
+                <i data-lucide="chevron-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-32">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <div class="w-64 h-64 md:w-80 md:h-80 mx-auto rounded-2xl overflow-hidden border-2 border-blue-500/30">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format" alt="Profil Fotoğrafı" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
+                    </div>
+                    <div class="absolute -bottom-4 -right-4 glass p-6 rounded-xl hidden md:block">
+                        <p class="text-3xl font-bold gradient-text">5+</p>
+                        <p class="text-xs text-gray-400 uppercase">Yıllık Deneyim</p>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-sm uppercase tracking-widest text-blue-400 mb-2">Hakkımda</h2>
+                    <h3 class="text-4xl font-bold mb-6">Senior Full-Stack Developer</h3>
+                    <p class="text-gray-400 mb-8 leading-relaxed">
+                        Merhaba, ben Kaan. Yaklaşık 5 yıldır kurumsal Java projeleri ve modern web teknolojileri üzerinde çalışıyorum. 
+                        Kod yazmayı bir sanata dönüştürmeyi ve her zaman en performanslı çözümü bulmayı hedefliyorum.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="glass p-4 rounded-lg">
+                            <p class="text-2xl font-bold">25+</p>
+                            <p class="text-gray-500 text-sm">Proje Sayısı</p>
+                        </div>
+                        <div class="glass p-4 rounded-lg">
+                            <p class="text-2xl font-bold">12</p>
+                            <p class="text-gray-500 text-sm">Ödül & Sertifika</p>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <h4 class="font-semibold mb-4 text-gray-300">Teknik Skiller</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag px-4 py-1 rounded-full text-xs">Java</span>
+                            <span class="skill-tag px-4 py-1 rounded-full text-xs">Spring Boot</span>
+                            <span class="skill-tag px-4 py-1 rounded-full text-xs">PostgreSQL</span>
+                            <span class="skill-tag px-4 py-1 rounded-full text-xs">Docker</span>
+                            <span class="skill-tag px-4 py-1 rounded-full text-xs">React</span>
+                            <span class="skill-tag px-4 py-1 rounded-full text-xs">AWS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="py-32 bg-black bg-opacity-30">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-16 text-center">Özgeçmiş</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <div class="flex items-center mb-8">
+                        <i data-lucide="briefcase" class="text-blue-400 mr-4"></i>
+                        <h3 class="text-2xl font-semibold">Deneyim</h3>
+                    </div>
+                    <div class="space-y-8 border-l border-gray-800 ml-4 pl-8">
+                        <div class="relative">
+                            <div class="absolute -left-10 w-4 h-4 rounded-full bg-blue-500 border-4 border-black"></div>
+                            <span class="text-xs text-blue-400 font-mono">2021 - Günümüz</span>
+                            <h4 class="text-lg font-bold mt-2">Senior Java Developer</h4>
+                            <p class="text-sm text-gray-500 mb-2">Global Teknoloji A.Ş.</p>
+                            <p class="text-sm text-gray-400">Microservice mimarisi ile yüksek trafikli finansal uygulamaların geliştirilmesi.</p>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute -left-10 w-4 h-4 rounded-full bg-gray-700 border-4 border-black"></div>
+                            <span class="text-xs text-blue-400 font-mono">2019 - 2021</span>
+                            <h4 class="text-lg font-bold mt-2">Full-Stack Developer</h4>
+                            <p class="text-sm text-gray-500 mb-2">Soft Solutions</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex items-center mb-8">
+                        <i data-lucide="graduation-cap" class="text-purple-400 mr-4"></i>
+                        <h3 class="text-2xl font-semibold">Eğitim</h3>
+                    </div>
+                    <div class="space-y-8 border-l border-gray-800 ml-4 pl-8">
+                        <div class="relative">
+                            <div class="absolute -left-10 w-4 h-4 rounded-full bg-purple-500 border-4 border-black"></div>
+                            <span class="text-xs text-purple-400 font-mono">2015 - 2019</span>
+                            <h4 class="text-lg font-bold mt-2">Bilgisayar Mühendisliği</h4>
+                            <p class="text-sm text-gray-500 mb-2">İstanbul Teknik Üniversitesi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="projects" class="py-32">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-16 text-center">Portfolyo</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="group relative overflow-hidden rounded-2xl glass cursor-pointer h-72" onclick="openModal('proj1')">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600" alt="Proje" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 backdrop-blur-sm">
+                        <h4 class="text-xl font-bold">Finans Paneli</h4>
+                        <p class="text-sm text-blue-300">Spring Boot & React</p>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl glass cursor-pointer h-72" onclick="openModal('proj2')">
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600" alt="Proje" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 backdrop-blur-sm">
+                        <h4 class="text-xl font-bold">AI Chat App</h4>
+                        <p class="text-sm text-blue-300">Python & WebSocket</p>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl glass cursor-pointer h-72" onclick="openModal('proj3')">
+                    <img src="https://images.unsplash.com/photo-1551288049-bbb65181ef9b?w=600" alt="Proje" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 backdrop-blur-sm">
+                        <h4 class="text-xl font-bold">Data Analytics</h4>
+                        <p class="text-sm text-blue-300">Big Data & Spark</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-16 text-center">İletişim</h2>
+            <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6">Bir Projeniz mi Var?</h3>
+                    <p class="text-gray-400 mb-8">Aklınızdaki fikirleri hayata geçirmek için buradayım. Hemen mesaj atın.</p>
+                    <div class="space-y-6">
+                        <div class="flex items-center glass p-4 rounded-xl">
+                            <i data-lucide="mail" class="text-blue-400 mr-4"></i>
+                            <span>kaan@ornek.com</span>
+                        </div>
+                        <div class="flex space-x-6 pt-6 justify-center md:justify-start">
+                            <a href="#" class="hover:text-blue-400 transition-all transform hover:scale-110"><i data-lucide="github"></i></a>
+                            <a href="#" class="hover:text-blue-400 transition-all transform hover:scale-110"><i data-lucide="linkedin"></i></a>
+                            <a href="#" class="hover:text-blue-400 transition-all transform hover:scale-110"><i data-lucide="twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass p-8 rounded-2xl">
+                    <form id="contactForm" class="space-y-4">
+                        <input type="text" placeholder="İsim" required class="w-full bg-white/5 border border-white/10 rounded-lg p-3 focus:border-blue-500 outline-none">
+                        <input type="email" placeholder="E-posta" required class="w-full bg-white/5 border border-white/10 rounded-lg p-3 focus:border-blue-500 outline-none">
+                        <textarea rows="4" placeholder="Mesajınız" required class="w-full bg-white/5 border border-white/10 rounded-lg p-3 focus:border-blue-500 outline-none"></textarea>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition-all shadow-lg shadow-blue-500/20">Gönder</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="projectModal" class="fixed inset-0 z-[110] hidden items-center justify-center p-6">
+        <div class="absolute inset-0 bg-black/90 backdrop-blur-xl" onclick="closeModal()"></div>
+        <div class="relative glass max-w-2xl w-full p-10 rounded-3xl animate-in zoom-in duration-300">
+            <button onclick="closeModal()" class="absolute top-6 right-6 hover:text-red-400 transition-colors"><i data-lucide="x"></i></button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="fixed bottom-10 right-10 glass p-4 rounded-xl border-green-500/50 hidden z-[200]">
+        <p class="text-green-400 text-sm">Mesajınız başarıyla iletildi!</p>
+    </div>
+
+    <footer class="py-12 text-center text-gray-600 text-sm border-t border-white/5">
+        <p>© 2024 Kaan Yılmaz. Minimalist & Modern Web Deneyimi.</p>
+    </footer>
+
+    <script>
+        // Init Lucide
+        function initIcons() {
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
+        // Particles
+        const canvas = document.getElementById('particles-js');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        function initCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        class Particle {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2;
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.speedY = (Math.random() - 0.5) * 0.4;
+                this.opacity = Math.random() * 0.5;
+            }
+            update() {
+                this.x += this.speedX; this.y += this.speedY;
+                if (this.x > canvas.width || this.x < 0 || this.y > canvas.height || this.y < 0) this.reset();
+            }
+            draw() {
+                ctx.fillStyle = `rgba(167, 139, 250, ${this.opacity})`;
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+            }
+        }
+        function setupParticles() { particles = Array.from({length: 80}, () => new Particle()); }
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+
+        // Section Observer & Navigation Highlight
+        const observerOptions = { threshold: 0.3 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Update Sections Animation
+                    entry.target.classList.add('active-section');
+                    
+                    // Update Nav Links
+                    const id = entry.target.getAttribute('id');
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // Smooth Scroll & Transition logic
+        document.querySelectorAll('.nav-link').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetSection.offsetTop,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        window.onload = function() {
+            initIcons();
+            initCanvas();
+            setupParticles();
+            animate();
+            document.querySelectorAll('section').forEach(section => observer.observe(section));
+
+            // Hero Entrance
+            setTimeout(() => {
+                document.getElementById('hero-title').classList.remove('opacity-0', 'translate-y-4');
+                document.getElementById('hero-desc').classList.remove('opacity-0');
+                document.getElementById('hero-social').classList.remove('opacity-0');
+            }, 300);
+        };
+
+        // Project Modals
+        const projectData = {
+            'proj1': { title: 'Finans Paneli', desc: 'Gerçek zamanlı borsa verilerini işleyen, Spring Boot ve React ile geliştirilmiş dashboard.' },
+            'proj2': { title: 'AI Chat App', desc: 'Yapay zeka modellerini WebSocket protokolü üzerinden anlık konuşturan chat arayüzü.' },
+            'proj3': { title: 'Data Analytics', desc: 'Büyük veri setlerini işleyip görselleştiren yüksek performanslı analitik aracı.' }
+        };
+
+        function openModal(id) {
+            const data = projectData[id];
+            document.getElementById('modalContent').innerHTML = `
+                <h3 class="text-4xl font-bold mb-4 gradient-text">${data.title}</h3>
+                <p class="text-gray-300 text-lg leading-relaxed mb-8">${data.desc}</p>
+                <div class="flex space-x-4">
+                    <button class="bg-blue-600 px-8 py-3 rounded-xl font-bold hover:bg-blue-700 transition-all">Detayları Gör</button>
+                    <button onclick="closeModal()" class="border border-white/20 px-8 py-3 rounded-xl font-bold hover:bg-white/5 transition-all">Kapat</button>
+                </div>
+            `;
+            document.getElementById('projectModal').classList.remove('hidden');
+            document.getElementById('projectModal').classList.add('flex');
+            document.body.style.overflow = 'hidden';
+            initIcons();
+        }
+
+        function closeModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+            document.getElementById('projectModal').classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const toast = document.getElementById('toast');
+            toast.classList.remove('hidden');
+            e.target.reset();
+            setTimeout(() => toast.classList.add('hidden'), 3000);
+        });
+
+        window.addEventListener('resize', initCanvas);
+    </script>
+</body>
+</html>
