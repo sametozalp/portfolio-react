@@ -1,29 +1,12 @@
+import { Briefcase, GraduationCap } from 'lucide-react';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store';
-import { Briefcase, GraduationCap } from 'lucide-react';
 
 const Resume: React.FC = () => {
   const { data } = useSelector((state: RootState) => state.portfolio);
 
-  const experiences = data.experiences || [
-    {
-      id: 1,
-      title: 'Senior Java Developer',
-      company: 'Global Teknoloji A.Ş.',
-      startDate: '2021',
-      endDate: 'Günümüz',
-      description: 'Microservice mimarisi ile yüksek trafikli finansal uygulamaların geliştirilmesi.'
-    },
-    {
-      id: 2,
-      title: 'Full-Stack Developer',
-      company: 'Soft Solutions',
-      startDate: '2019',
-      endDate: '2021',
-      description: ''
-    }
-  ];
+  const experiences = data.experiences;
 
   const educations = data.educations || [
     {
@@ -47,7 +30,7 @@ const Resume: React.FC = () => {
               <h3 className="text-2xl font-semibold">Deneyim</h3>
             </div>
             <div className="space-y-8 border-l border-gray-800 ml-4 pl-8">
-              {experiences.map((exp, index) => (
+              {experiences?.map((exp, index) => (
                 <div key={exp.id} className="relative">
                   <div 
                     className={`absolute -left-10 w-4 h-4 rounded-full border-4 border-black ${

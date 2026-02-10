@@ -43,6 +43,7 @@ export interface Education {
 export interface Entrance {
   id?: number;
   title: string;
+  fullName: string;
   description: string;
 }
 

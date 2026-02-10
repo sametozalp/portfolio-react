@@ -15,10 +15,8 @@ const Hero: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const entranceData = data.entrance || {
-    title: 'Merhaba, Ben Kaan Yılmaz',
-    description: 'Full-Stack Geliştirici & Yazılım Mimarı. Karmaşık sorunlara zarif çözümler üretiyorum.'
-  };
+  const entranceData = data.entrance;
+  console.log(entranceData)
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center active-section">
@@ -28,20 +26,19 @@ const Hero: React.FC = () => {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
-          {entranceData.title.split(' ').map((word, index) => (
-            <span key={index}>
-              {word}
-              {index === 2 && <span className="gradient-text"> Kaan Yılmaz</span>}
-              {index < entranceData.title.split(' ').length - 1 && ' '}
-            </span>
-          ))}
+
+       {entranceData?.title}{" "}
+        <span className="gradient-text">
+          {entranceData?.fullName}
+        </span>
+
         </h1>
         <p 
           className={`text-xl text-gray-400 mb-8 max-w-2xl mx-auto transition-all duration-1000 delay-300 ${
             isVisible ? 'opacity-100' : 'opacity-0'
           }`}
         >
-          {entranceData.description}
+          {entranceData?.description}
         </p>
         
         <Navigation />

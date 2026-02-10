@@ -5,15 +5,9 @@ import { RootState } from '../store';
 const About: React.FC = () => {
   const { data } = useSelector((state: RootState) => state.portfolio);
 
-  const aboutData = data.about || {
-    title: 'Senior Full-Stack Developer',
-    description: 'Merhaba, ben Kaan. Yaklaşık 5 yıldır kurumsal Java projeleri ve modern web teknolojileri üzerinde çalışıyorum. Kod yazmayı bir sanata dönüştürmeyi ve her zaman en performanslı çözümü bulmayı hedefliyorum.',
-    profileImageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format'
-  };
+  const aboutData = data.about;
 
-  const skills = data.skills || [
-    'Java', 'Spring Boot', 'PostgreSQL', 'Docker', 'React', 'AWS'
-  ];
+  const skills = data.skills;
 
   const stats = [
     { number: '5+', label: 'Yıllık Deneyim' },
@@ -28,7 +22,7 @@ const About: React.FC = () => {
           <div className="relative">
             <div className="w-64 h-64 md:w-80 md:h-80 mx-auto rounded-2xl overflow-hidden border-2 border-blue-500/30">
               <img 
-                src={aboutData.profileImageUrl} 
+                src={aboutData?.profileImageUrl} 
                 alt="Profil Fotoğrafı" 
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
               />
@@ -41,9 +35,9 @@ const About: React.FC = () => {
           
           <div>
             <h2 className="text-sm uppercase tracking-widest text-blue-400 mb-2">Hakkımda</h2>
-            <h3 className="text-4xl font-bold mb-6">{aboutData.title}</h3>
+            <h3 className="text-4xl font-bold mb-6">{aboutData?.title}</h3>
             <p className="text-gray-400 mb-8 leading-relaxed">
-              {aboutData.description}
+              {aboutData?.description}
             </p>
             
             <div className="grid grid-cols-2 gap-4 mb-8">
@@ -58,7 +52,7 @@ const About: React.FC = () => {
             <div className="mb-8">
               <h4 className="font-semibold mb-4 text-gray-300">Teknik Skiller</h4>
               <div className="flex flex-wrap gap-2">
-                {skills.map((skill, index) => (
+                {skills?.map((skill, index) => (
                   <span 
                     key={index} 
                     className="skill-tag px-4 py-1 rounded-full text-xs"

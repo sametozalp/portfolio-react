@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store';
 import { openModal } from '../store/slices/uiSlice';
 
@@ -7,44 +7,7 @@ const Projects: React.FC = () => {
   const dispatch = useDispatch();
   const { data } = useSelector((state: RootState) => state.portfolio);
 
-  const projects = data.projects || [
-    {
-      id: 1,
-      title: 'Finans Paneli',
-      summary: 'Spring Boot & React',
-      description: 'Gerçek zamanlı borsa verilerini işleyen, Spring Boot ve React ile geliştirilmiş dashboard.',
-      images: ['https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600'],
-      techStack: ['Spring Boot', 'React', 'PostgreSQL', 'Redis'],
-      features: ['Real-time data', 'Advanced charts', 'User authentication'],
-      projectDate: '2023-06-15',
-      liveDemoUrl: 'https://demo.example.com',
-      sourceCodeUrl: 'https://github.com/example/finance-panel'
-    },
-    {
-      id: 2,
-      title: 'AI Chat App',
-      summary: 'Python & WebSocket',
-      description: 'Yapay zeka modellerini WebSocket protokolü üzerinden anlık konuşturan chat arayüzü.',
-      images: ['https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600'],
-      techStack: ['Python', 'WebSocket', 'TensorFlow', 'React'],
-      features: ['Real-time messaging', 'AI integration', 'Multi-user support'],
-      projectDate: '2023-09-20',
-      liveDemoUrl: 'https://chat.example.com',
-      sourceCodeUrl: 'https://github.com/example/ai-chat'
-    },
-    {
-      id: 3,
-      title: 'Data Analytics',
-      summary: 'Big Data & Spark',
-      description: 'Büyük veri setlerini işleyip görselleştiren yüksek performanslı analitik aracı.',
-      images: ['https://images.unsplash.com/photo-1551288049-bbb65181ef9b?w=600'],
-      techStack: ['Apache Spark', 'Python', 'D3.js', 'Docker'],
-      features: ['Big data processing', 'Interactive visualizations', 'Cloud deployment'],
-      projectDate: '2023-11-10',
-      liveDemoUrl: 'https://analytics.example.com',
-      sourceCodeUrl: 'https://github.com/example/data-analytics'
-    }
-  ];
+  const projects = data.projects;
 
   const handleProjectClick = (project: any) => {
     dispatch(openModal(project));
@@ -55,7 +18,7 @@ const Projects: React.FC = () => {
       <div className="container mx-auto px-6">
         <h2 className="text-4xl font-bold mb-16 text-center">Portfolyo</h2>
         <div className="grid md:grid-cols-3 gap-8">
-          {projects.map((project) => (
+          {projects?.map((project) => (
             <div
               key={project.id}
               className="group relative overflow-hidden rounded-2xl glass cursor-pointer h-72"

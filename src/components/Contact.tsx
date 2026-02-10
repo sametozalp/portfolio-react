@@ -15,11 +15,7 @@ const Contact: React.FC = () => {
     message: ''
   });
 
-  const contactData = data.contact || {
-    title: 'Bir Projeniz mi Var?',
-    description: 'Aklınızdaki fikirleri hayata geçirmek için buradayım. Hemen mesaj atın.',
-    myEmail: 'kaan@ornek.com'
-  };
+  const contactData = data.contact;
 
   const socials = data.socials || [
     { socialMedia: 'GITHUB', url: '#' },
@@ -69,12 +65,12 @@ const Contact: React.FC = () => {
         <h2 className="text-4xl font-bold mb-16 text-center">İletişim</h2>
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
           <div>
-            <h3 className="text-2xl font-bold mb-6">{contactData.title}</h3>
-            <p className="text-gray-400 mb-8">{contactData.description}</p>
+            <h3 className="text-2xl font-bold mb-6">{contactData?.title}</h3>
+            <p className="text-gray-400 mb-8">{contactData?.description}</p>
             <div className="space-y-6">
               <div className="flex items-center glass p-4 rounded-xl">
                 <Mail className="text-blue-400 mr-4" size={20} />
-                <span>{contactData.myEmail}</span>
+                <span>{contactData?.myEmail}</span>
               </div>
               <div className="flex space-x-6 pt-6 justify-center md:justify-start">
                 {socials.map((social, index) => (
