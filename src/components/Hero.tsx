@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Navigation from './Navigation';
 
-const Hero: React.FC = () => {
+function Hero() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {

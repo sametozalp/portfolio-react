@@ -1,6 +1,5 @@
-import React from 'react';
 
-const Footer: React.FC = () => {
+function Footer () {
   const copyrightData = {
     year: new Date().getFullYear(),
     description: "Samet Özalp"

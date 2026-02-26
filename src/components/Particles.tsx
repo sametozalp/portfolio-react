@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
-const Particles: React.FC = () => {
+function Particles() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {

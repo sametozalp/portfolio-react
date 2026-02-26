@@ -1,7 +1,7 @@
 import { ChevronDown, Github, Instagram, Linkedin, Twitter } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const Navigation: React.FC = () => {
+function Navigation() {
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {

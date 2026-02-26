@@ -1,7 +1,6 @@
 import { Briefcase, GraduationCap } from 'lucide-react';
-import React from 'react';
 
-const Resume: React.FC = () => {
+function Resume() {
   const experiences = [
     {
       id: 1,
