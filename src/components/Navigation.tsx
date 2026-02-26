@@ -1,12 +1,30 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../store';
-import { setActiveSection } from '../store/slices/uiSlice';
-import { Github, Linkedin, Twitter, Instagram, ChevronDown } from 'lucide-react';
+import { ChevronDown, Github, Instagram, Linkedin, Twitter } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 
 const Navigation: React.FC = () => {
-  const dispatch = useDispatch();
-  const { activeSection } = useSelector((state: RootState) => state.ui);
+  const [activeSection, setActiveSection] = useState('home');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['home', 'about', 'resume', 'projects', 'contact'];
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navItems = [
     { id: 'home', label: 'Giriş' },
@@ -20,7 +38,7 @@ const Navigation: React.FC = () => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      dispatch(setActiveSection(sectionId));
+      setActiveSection(sectionId);
     }
   };
 

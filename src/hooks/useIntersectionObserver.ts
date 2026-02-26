@@ -1,9 +1,7 @@
 import { useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
-import { setActiveSection } from '../store/slices/uiSlice';
 
+// animasyonu tetikler
 export const useIntersectionObserver = () => {
-  const dispatch = useDispatch();
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
@@ -15,13 +13,8 @@ export const useIntersectionObserver = () => {
     observerRef.current = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const id = entry.target.getAttribute('id');
-          if (id) {
-            dispatch(setActiveSection(id));
-            
-            // Add active-section class for animations
-            entry.target.classList.add('active-section');
-          }
+          // Add active-section class for animations
+          entry.target.classList.add('active-section');
         }
       });
     }, options);
@@ -37,7 +30,7 @@ export const useIntersectionObserver = () => {
         observerRef.current.disconnect();
       }
     };
-  }, [dispatch]);
+  }, []);
 
   return observerRef.current;
 };

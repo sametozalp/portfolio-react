@@ -1,10 +1,11 @@
 import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { showToast } from '../store/slices/uiSlice';
 
-function Contact() {
-  const dispatch = useDispatch();
+interface ContactProps {
+  showToast: (message: string, type?: 'success' | 'error' | 'info') => void;
+}
+
+function Contact({ showToast }: ContactProps) {
   const [contactSubmitting, setContactSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -38,10 +39,10 @@ function Contact() {
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
-      dispatch(showToast({ message: 'Mesajınız başarıyla iletildi!', type: 'success' }));
+      showToast('Mesajınız başarıyla iletildi!', 'success');
       setFormData({ name: '', email: '', message: '' });
     } catch (error: any) {
-      dispatch(showToast({ message: error || 'Mesaj gönderilemedi. Lütfen tekrar deneyin.', type: 'error' }));
+      showToast(error || 'Mesaj gönderilemedi. Lütfen tekrar deneyin.', 'error');
     } finally {
       setContactSubmitting(false);
     }

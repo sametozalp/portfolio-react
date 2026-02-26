@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
 import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -10,20 +9,34 @@ import Projects from './components/Projects';
 import Resume from './components/Resume';
 import Toast from './components/Toast';
 import { useIntersectionObserver } from './hooks/useIntersectionObserver';
-import { fetchPortfolioData } from './store/slices/portfolioSlice';
 
 const App: React.FC = () => {
-  const dispatch = useDispatch();
   const [selectedProject, setSelectedProject] = useState(null);
-
-  useEffect(() => {
-    dispatch(fetchPortfolioData() as any);
-  }, [dispatch]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [toast, setToast] = useState({
+    show: false,
+    message: '',
+    type: 'success' as 'success' | 'error' | 'info'
+  });
 
   useIntersectionObserver();
 
   const handleProjectClick = (project: any) => {
     setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedProject(null);
+  };
+
+  const showToast = (message: string, type: 'success' | 'error' | 'info' = 'success') => {
+    setToast({ show: true, message, type });
+  };
+
+  const hideToast = () => {
+    setToast(prev => ({ ...prev, show: false, message: '' }));
   };
 
   return (
@@ -37,12 +50,21 @@ const App: React.FC = () => {
         {/* <Projects />
         <Contact /> */}
       <Projects onProjectClick={handleProjectClick} />
-        <Contact />
+        <Contact showToast={showToast} />
       </main>
       
       <Footer />
-      <Modal />
-      <Toast />
+      <Modal 
+        isOpen={isModalOpen}
+        project={selectedProject}
+        onClose={handleCloseModal}
+      />
+      <Toast 
+        show={toast.show}
+        message={toast.message}
+        type={toast.type}
+        onClose={hideToast}
+      />
     </div>
   );
 };
