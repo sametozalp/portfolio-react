@@ -12,11 +12,11 @@ function About() {
     "Docker", "AWS", "Git", "Tailwind CSS", "Next.js"
   ];
 
-  const stats = [
-    { number: '5+', label: 'Yıllık Deneyim' },
-    { number: '25+', label: 'Proje Sayısı' },
-    { number: '12', label: 'Ödül & Sertifika' }
-  ];
+  // const stats = [
+  //   { number: '5+', label: 'Yıllık Deneyim' },
+  //   { number: '25+', label: 'Proje Sayısı' },
+  //   { number: '12', label: 'Ödül & Sertifika' }
+  // ];
 
   return (
     <section id="about" className="py-32">
@@ -30,10 +30,10 @@ function About() {
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
               />
             </div>
-            <div className="absolute -bottom-4 -right-4 bg-blue-900/50 border border-blue-500/40 p-6 rounded-xl hidden md:block backdrop-blur-sm shadow-lg">
+            {/* <div className="absolute -bottom-4 -right-4 bg-blue-900/50 border border-blue-500/40 p-6 rounded-xl hidden md:block backdrop-blur-sm shadow-lg">
               <p className="text-3xl font-bold gradient-text">{stats[0].number}</p>
               <p className="text-xs text-gray-300 uppercase">{stats[0].label}</p>
-            </div>
+            </div> */}
           </div>
           
           <div>
@@ -43,14 +43,14 @@ function About() {
               {aboutData?.description}
             </p>
             
-            <div className="grid grid-cols-2 gap-4 mb-8">
+            {/* <div className="grid grid-cols-2 gap-4 mb-8">
               {stats.slice(1).map((stat, index) => (
                 <div key={index} className="bg-gray-800/60 border border-gray-600/50 p-4 rounded-lg backdrop-blur-sm shadow-md">
                   <p className="text-2xl font-bold text-white">{stat.number}</p>
                   <p className="text-gray-300 text-sm">{stat.label}</p>
                 </div>
               ))}
-            </div>
+            </div> */}
 
             <div className="mb-8">
               <h4 className="font-semibold mb-4 text-gray-300">Teknik Skiller</h4>
