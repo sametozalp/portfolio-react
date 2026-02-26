@@ -1,26 +1,27 @@
 import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../store';
-import { clearContactSuccess, submitContactForm } from '../store/slices/portfolioSlice';
+import { useDispatch } from 'react-redux';
 import { showToast } from '../store/slices/uiSlice';
 
-const Contact: React.FC = () => {
+function Contact() {
   const dispatch = useDispatch();
-  const { contactSubmitting, data } = useSelector((state: RootState) => state.portfolio);
-
+  const [contactSubmitting, setContactSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
 
-  const contactData = data.contact;
+  const contactData = {
+    title: "İletişim",
+    description: "Yeni projeler ve iş birlikleri için her zaman açıkım. Aşağıdaki form üzerinden veya sosyal medya hesaplarımdan benimle iletişime geçebilirsiniz.",
+    myEmail: "samet@example.com"
+  };
 
-  const socials = data.socials || [
-    { socialMedia: 'GITHUB', url: '#' },
-    { socialMedia: 'LINKEDIN', url: '#' },
-    { socialMedia: 'X', url: '#' }
+  const socials = [
+    { socialMedia: 'GITHUB', url: 'https://github.com/sametozalp' },
+    { socialMedia: 'LINKEDIN', url: 'https://linkedin.com/in/sametozalp' },
+    { socialMedia: 'X', url: 'https://twitter.com/sametozalp' }
   ];
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -32,17 +33,17 @@ const Contact: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setContactSubmitting(true);
     
     try {
-      await dispatch(submitContactForm(formData) as any);
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
       dispatch(showToast({ message: 'Mesajınız başarıyla iletildi!', type: 'success' }));
       setFormData({ name: '', email: '', message: '' });
-      
-      setTimeout(() => {
-        dispatch(clearContactSuccess());
-      }, 3000);
     } catch (error: any) {
       dispatch(showToast({ message: error || 'Mesaj gönderilemedi. Lütfen tekrar deneyin.', type: 'error' }));
+    } finally {
+      setContactSubmitting(false);
     }
   };
 

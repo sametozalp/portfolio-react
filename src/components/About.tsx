@@ -1,13 +1,16 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../store';
 
-const About: React.FC = () => {
-  const { data } = useSelector((state: RootState) => state.portfolio);
+function About() {
+  const aboutData = {
+    title: "Full Stack Developer",
+    description: "Modern web teknolojileri konusunda uzmanlaşmış, kullanıcı odaklı ve performanslı uygulamalar geliştiren yazılım mühendisi. React, Node.js ve cloud teknolojileri gibi alanlarda derin deneyime sahibim.",
+    profileImageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
+  };
 
-  const aboutData = data.about;
-
-  const skills = data.skills;
+  const skills = [
+    "JavaScript", "TypeScript", "React", "Node.js", "Python", 
+    "Java", "Spring Boot", "PostgreSQL", "MongoDB", "Redis",
+    "Docker", "AWS", "Git", "Tailwind CSS", "Next.js"
+  ];
 
   const stats = [
     { number: '5+', label: 'Yıllık Deneyim' },
@@ -27,9 +30,9 @@ const About: React.FC = () => {
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
               />
             </div>
-            <div className="absolute -bottom-4 -right-4 glass p-6 rounded-xl hidden md:block">
+            <div className="absolute -bottom-4 -right-4 bg-blue-900/50 border border-blue-500/40 p-6 rounded-xl hidden md:block backdrop-blur-sm shadow-lg">
               <p className="text-3xl font-bold gradient-text">{stats[0].number}</p>
-              <p className="text-xs text-gray-400 uppercase">{stats[0].label}</p>
+              <p className="text-xs text-gray-300 uppercase">{stats[0].label}</p>
             </div>
           </div>
           
@@ -42,9 +45,9 @@ const About: React.FC = () => {
             
             <div className="grid grid-cols-2 gap-4 mb-8">
               {stats.slice(1).map((stat, index) => (
-                <div key={index} className="glass p-4 rounded-lg">
-                  <p className="text-2xl font-bold">{stat.number}</p>
-                  <p className="text-gray-500 text-sm">{stat.label}</p>
+                <div key={index} className="bg-gray-800/60 border border-gray-600/50 p-4 rounded-lg backdrop-blur-sm shadow-md">
+                  <p className="text-2xl font-bold text-white">{stat.number}</p>
+                  <p className="text-gray-300 text-sm">{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -57,7 +60,8 @@ const About: React.FC = () => {
                     key={index} 
                     className="skill-tag px-4 py-1 rounded-full text-xs"
                   >
-                  {typeof skill === 'string' ? skill : skill.name}
+                  {/* {typeof skill === 'string' ? skill : skill.name} */}
+                  {skill}
                   </span>
                 ))}
               </div>

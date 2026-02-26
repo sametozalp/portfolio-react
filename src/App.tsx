@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import About from './components/About';
 import Contact from './components/Contact';
@@ -14,12 +14,17 @@ import { fetchPortfolioData } from './store/slices/portfolioSlice';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
+  const [selectedProject, setSelectedProject] = useState(null);
 
   useEffect(() => {
     dispatch(fetchPortfolioData() as any);
   }, [dispatch]);
 
   useIntersectionObserver();
+
+  const handleProjectClick = (project: any) => {
+    setSelectedProject(project);
+  };
 
   return (
     <div className="min-h-screen relative">
@@ -29,7 +34,9 @@ const App: React.FC = () => {
         <Hero />
         <About />
         <Resume />
-        <Projects />
+        {/* <Projects />
+        <Contact /> */}
+      <Projects onProjectClick={handleProjectClick} />
         <Contact />
       </main>
       

@@ -1,6 +1,6 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { MainData, ContactFormData } from '../../types';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { portfolioApi } from '../../api/portfolioApi';
+import { ContactFormData, MainData } from '../../types';
 
 interface PortfolioState {
   data: MainData;

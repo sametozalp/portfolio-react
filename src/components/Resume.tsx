@@ -1,21 +1,50 @@
 import { Briefcase, GraduationCap } from 'lucide-react';
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../store';
 
 const Resume: React.FC = () => {
-  const { data } = useSelector((state: RootState) => state.portfolio);
-
-  const experiences = data.experiences;
-
-  const educations = data.educations || [
+  const experiences = [
     {
       id: 1,
-      title: 'Bilgisayar Mühendisliği',
-      school: 'İstanbul Teknik Üniversitesi',
-      startDate: '2015',
-      endDate: '2019',
-      description: ''
+      title: "Senior Full Stack Developer",
+      company: "Tech Company A",
+      startDate: "2022-01",
+      endDate: "2024-01",
+      description: "React ve Node.js tabanlı büyük ölçekli projelerin geliştirilmesi ve liderliği."
+    },
+    {
+      id: 2,
+      title: "Full Stack Developer",
+      company: "Digital Agency B",
+      startDate: "2020-06",
+      endDate: "2021-12",
+      description: "Çeşitli müşteri projelerinde frontend ve backend geliştirme."
+    },
+    {
+      id: 3,
+      title: "Junior Developer",
+      company: "Startup C",
+      startDate: "2019-03",
+      endDate: "2020-05",
+      description: "Web uygulaması geliştirme ve bakım."
+    }
+  ];
+
+  const educations = [
+    {
+      id: 1,
+      title: "Bilgisayar Mühendisliği",
+      school: "İstanbul Teknik Üniversitesi",
+      startDate: "2015-09",
+      endDate: "2019-06",
+      description: "Lisans eğitimi"
+    },
+    {
+      id: 2,
+      title: "Web Development Bootcamp",
+      school: "Tech Academy",
+      startDate: "2018-07",
+      endDate: "2018-09",
+      description: "Yoğun web geliştirme programı"
     }
   ];
 
@@ -30,7 +59,7 @@ const Resume: React.FC = () => {
               <h3 className="text-2xl font-semibold">Deneyim</h3>
             </div>
             <div className="space-y-8 border-l border-gray-800 ml-4 pl-8">
-              {experiences?.map((exp, index) => (
+              {experiences.map((exp, index) => (
                 <div key={exp.id} className="relative">
                   <div 
                     className={`absolute -left-10 w-4 h-4 rounded-full border-4 border-black ${

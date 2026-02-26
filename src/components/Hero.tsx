@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../store';
 import Navigation from './Navigation';
 
 const Hero: React.FC = () => {
-  const { data } = useSelector((state: RootState) => state.portfolio);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -15,8 +12,11 @@ const Hero: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const entranceData = data.entrance;
-  console.log(entranceData)
+  const entranceData = {
+    title: "Merhaba, ben",
+    fullName: "Samet Özalp",
+    description: "Full Stack Developer | React & Node.js Uzmanı"
+  };
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center active-section">
@@ -26,10 +26,9 @@ const Hero: React.FC = () => {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
-
-       {entranceData?.title}{" "}
+       {entranceData.title}{" "}
         <span className="gradient-text">
-          {entranceData?.fullName}
+          {entranceData.fullName}
         </span>
 
         </h1>
