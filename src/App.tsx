@@ -3,8 +3,8 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Hero from './components/Hero';
-import Modal from './components/Modal';
 import Particles from './components/Particles';
+import ProjectDetail from './components/ProjectDetail';
 import Projects from './components/Projects';
 import Resume from './components/Resume';
 import Toast from './components/Toast';
@@ -54,7 +54,7 @@ const App: React.FC = () => {
       </main>
       
       <Footer />
-      <Modal 
+      <ProjectDetail 
         isOpen={isModalOpen}
         project={selectedProject}
         onClose={handleCloseModal}

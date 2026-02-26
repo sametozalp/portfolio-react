@@ -27,7 +27,9 @@ const Projects: React.FC<ProjectsProps> = ({ onProjectClick }) => {
       features: ["Kullanıcı Kimlik Doğrulama", "Sepet Yönetimi", "Ödeme Sistemleri", "Admin Paneli", "Real-time Bildirimler"],
       images: [
         "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop",
-        "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=300&fit=crop"
+        "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=300&fit=crop",
+        "https://images.unsplash.com/photo-1472851294608-61862f28a46e?w=400&h=300&fit=crop",
+        "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=300&fit=crop"
       ],
       projectDate: "2023-12",
       techStack: ["React", "Node.js", "MongoDB", "Stripe", "Redis"],
@@ -42,7 +44,9 @@ const Projects: React.FC<ProjectsProps> = ({ onProjectClick }) => {
       features: ["Görev Yönetimi", "Real-time Güncellemeler", "Dosya Paylaşımı", "Raporlama", "Takvim Entegrasyonu"],
       images: [
         "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=300&fit=crop",
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop"
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop",
+        "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=300&fit=crop",
+        "https://images.unsplash.com/photo-1573496359142-b3d406b8d8a3?w=400&h=300&fit=crop"
       ],
       projectDate: "2023-10",
       techStack: ["React", "TypeScript", "PostgreSQL", "Socket.io", "Docker"],
@@ -57,7 +61,9 @@ const Projects: React.FC<ProjectsProps> = ({ onProjectClick }) => {
       features: ["Multi-platform Entegrasyon", "İçerik Planlama", "Analitik ve Raporlar", "Otomasyon", "Takvim Görünümü"],
       images: [
         "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&h=300&fit=crop",
-        "https://images.unsplash.com/photo-1566492030073-8f0958a09f08?w=400&h=300&fit=crop"
+        "https://images.unsplash.com/photo-1566492030073-8f0958a09f08?w=400&h=300&fit=crop",
+        "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=300&fit=crop",
+        "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=400&h=300&fit=crop"
       ],
       projectDate: "2023-08",
       techStack: ["Next.js", "Python", "FastAPI", "PostgreSQL", "Redis"],
@@ -72,7 +78,9 @@ const Projects: React.FC<ProjectsProps> = ({ onProjectClick }) => {
       features: ["Adaptive Streaming", "Canlı Yayın", "VOD", "Kullanıcı Yönetimi", "CDN Entegrasyonu"],
       images: [
         "https://images.unsplash.com/photo-1574375927936-d5a98e8ffe85?w=400&h=300&fit=crop",
-        "https://images.unsplash.com/photo-1462823703073-4d1c834bbd27?w=400&h=300&fit=crop"
+        "https://images.unsplash.com/photo-1462823703073-4d1c834bbd27?w=400&h=300&fit=crop",
+        "https://images.unsplash.com/photo-1599539314701-01891c7bdbfc?w=400&h=300&fit=crop",
+        "https://images.unsplash.com/photo-1587595431973-160d0d94a1eb?w=400&h=300&fit=crop"
       ],
       projectDate: "2023-06",
       techStack: ["React", "Node.js", "AWS", "FFmpeg", "HLS"],
@@ -87,7 +95,9 @@ const Projects: React.FC<ProjectsProps> = ({ onProjectClick }) => {
       features: ["NLP", "Multi-language", "Custom Personality", "Context Memory", "API Integration"],
       images: [
         "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop",
-        "https://images.unsplash.com/photo-1531297484001-80022131e5e1?w=400&h=300&fit=crop"
+        "https://images.unsplash.com/photo-1531297484001-80022131e5e1?w=400&h=300&fit=crop",
+        "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400&h=300&fit=crop",
+        "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop"
       ],
       projectDate: "2023-04",
       techStack: ["Python", "TensorFlow", "FastAPI", "React", "WebSocket"],
@@ -102,7 +112,9 @@ const Projects: React.FC<ProjectsProps> = ({ onProjectClick }) => {
       features: ["İlan Yönetimi", "Harita Entegrasyonu", "Filtreleme", "Sanal Tur", "Mobil Uyumlu"],
       images: [
         "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&h=300&fit=crop",
-        "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&h=300&fit=crop"
+        "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&h=300&fit=crop",
+        "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop",
+        "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=400&h=300&fit=crop"
       ],
       projectDate: "2023-02",
       techStack: ["React", "Node.js", "MongoDB", "Google Maps", "Three.js"],
