@@ -51,7 +51,7 @@ function Navigation() {
     }
   };
 
-    const getSocialIcon = (type: string) => {
+  const getSocialIcon = (type: string) => {
     switch (type) {
       case 'GITHUB':
         return <Github size={20} />;
@@ -75,9 +75,8 @@ function Navigation() {
             <button
               key={item.id}
               onClick={() => handleNavClick(item.id)}
-              className={`nav-link text-sm font-medium tracking-wide transition-colors ${
-                activeSection === item.id ? 'active' : ''
-              }`}
+              className={`nav-link text-sm font-medium tracking-wide transition-colors ${activeSection === item.id ? 'active' : ''
+                }`}
             >
               {item.label}
             </button>
@@ -89,31 +88,18 @@ function Navigation() {
       {activeSection === 'home' && (
         <div className="flex justify-center space-x-6 mb-12">
 
-{
-socials.map((social, index) => (
-                  <a
-                    key={index}
-                    href={social.url}
-                    target='_blank'
-                    className="hover:text-blue-400 transition-all transform hover:scale-110"
-                  >
-                    {getSocialIcon(social.type)}
-                  </a>
-                ))
-}
-
-          {/* <a href="#" className="hover:text-blue-400 transition-colors">
-            <Github size={20} />
-          </a>
-          <a href="#" className="hover:text-blue-400 transition-colors">
-            <Linkedin size={20} />
-          </a>
-          <a href="#" className="hover:text-blue-400 transition-colors">
-            <Twitter size={20} />
-          </a>
-          <a href="#" className="hover:text-blue-400 transition-colors">
-            <Instagram size={20} />
-          </a> */}
+          {
+            socials.map((social, index) => (
+              <a
+                key={index}
+                href={social.url}
+                target='_blank'
+                className="hover:text-blue-400 transition-all transform hover:scale-110"
+              >
+                {getSocialIcon(social.type)}
+              </a>
+            ))
+          }
         </div>
       )}
 
