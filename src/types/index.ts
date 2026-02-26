@@ -24,7 +24,7 @@ export interface Project {
 
 export interface Experience {
   id?: number;
-  title: string;
+  positionName: string;
   description: string;
   company: string;
   startDate: string;
@@ -33,7 +33,7 @@ export interface Experience {
 
 export interface Education {
   id?: number;
-  title: string;
+  major: string;
   description: string;
   school: string;
   startDate: string;
@@ -66,18 +66,6 @@ export interface About {
   description: string;
   title: string;
   profileImageUrl: string;
-}
-
-export interface MainData {
-  entrance?: Entrance;
-  about?: About;
-  experiences?: Experience[];
-  educations?: Education[];
-  projects?: Project[];
-  skills?: Skill[];
-  socials?: Social[];
-  contact?: Contact;
-  copyright?: Copyright;
 }
 
 export interface ContactFormData {

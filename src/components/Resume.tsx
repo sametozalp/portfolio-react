@@ -1,51 +1,64 @@
 import { Briefcase, GraduationCap } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import portfolioApi from '../api/portfolioApi';
+import { Education as EducationModel, Experience as ExperienceModel } from '../types';
 
 function Resume() {
-  const experiences = [
-    {
-      id: 1,
-      title: "Senior Full Stack Developer",
-      company: "Tech Company A",
-      startDate: "2022-01",
-      endDate: "2024-01",
-      description: "React ve Node.js tabanlı büyük ölçekli projelerin geliştirilmesi ve liderliği."
-    },
-    {
-      id: 2,
-      title: "Full Stack Developer",
-      company: "Digital Agency B",
-      startDate: "2020-06",
-      endDate: "2021-12",
-      description: "Çeşitli müşteri projelerinde frontend ve backend geliştirme."
-    },
-    {
-      id: 3,
-      title: "Junior Developer",
-      company: "Startup C",
-      startDate: "2019-03",
-      endDate: "2020-05",
-      description: "Web uygulaması geliştirme ve bakım."
-    }
-  ];
 
-  const educations = [
-    {
-      id: 1,
-      title: "Bilgisayar Mühendisliği",
-      school: "İstanbul Teknik Üniversitesi",
-      startDate: "2015-09",
-      endDate: "2019-06",
-      description: "Lisans eğitimi"
-    },
-    {
-      id: 2,
-      title: "Web Development Bootcamp",
-      school: "Tech Academy",
-      startDate: "2018-07",
-      endDate: "2018-09",
-      description: "Yoğun web geliştirme programı"
-    }
-  ];
+  const [experiences, setExperiences] = useState<ExperienceModel[]>([]);
+  const [educations, setEducations] = useState<EducationModel[]>([]);
+
+  useEffect(() => {
+    portfolioApi.getExperiences().then((data) => setExperiences(data));
+    portfolioApi.getEducations().then((data) => setEducations(data));
+  }, []);
+
+
+  // const experiences = [
+  //   {
+  //     id: 1,
+  //     title: "Senior Full Stack Developer",
+  //     company: "Tech Company A",
+  //     startDate: "2022-01",
+  //     endDate: "2024-01",
+  //     description: "React ve Node.js tabanlı büyük ölçekli projelerin geliştirilmesi ve liderliği."
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Full Stack Developer",
+  //     company: "Digital Agency B",
+  //     startDate: "2020-06",
+  //     endDate: "2021-12",
+  //     description: "Çeşitli müşteri projelerinde frontend ve backend geliştirme."
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Junior Developer",
+  //     company: "Startup C",
+  //     startDate: "2019-03",
+  //     endDate: "2020-05",
+  //     description: "Web uygulaması geliştirme ve bakım."
+  //   }
+  // ];
+
+  // const educations = [
+  //   {
+  //     id: 1,
+  //     title: "Bilgisayar Mühendisliği",
+  //     school: "İstanbul Teknik Üniversitesi",
+  //     startDate: "2015-09",
+  //     endDate: "2019-06",
+  //     description: "Lisans eğitimi"
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Web Development Bootcamp",
+  //     school: "Tech Academy",
+  //     startDate: "2018-07",
+  //     endDate: "2018-09",
+  //     description: "Yoğun web geliştirme programı"
+  //   }
+  // ];
 
   return (
     <section id="resume" className="py-32 bg-black bg-opacity-30">
@@ -68,7 +81,7 @@ function Resume() {
                   <span className="text-xs text-blue-400 font-mono">
                     {exp.startDate} - {exp.endDate}
                   </span>
-                  <h4 className="text-lg font-bold mt-2">{exp.title}</h4>
+                  <h4 className="text-lg font-bold mt-2">{exp.positionName}</h4>
                   <p className="text-sm text-gray-500 mb-2">{exp.company}</p>
                   {exp.description && (
                     <p className="text-sm text-gray-400">{exp.description}</p>
@@ -90,7 +103,7 @@ function Resume() {
                   <span className="text-xs text-purple-400 font-mono">
                     {edu.startDate} - {edu.endDate}
                   </span>
-                  <h4 className="text-lg font-bold mt-2">{edu.title}</h4>
+                  <h4 className="text-lg font-bold mt-2">{edu.major}</h4>
                   <p className="text-sm text-gray-500 mb-2">{edu.school}</p>
                   {edu.description && (
                     <p className="text-sm text-gray-400">{edu.description}</p>
