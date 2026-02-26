@@ -1,8 +1,11 @@
 import { ChevronDown, Github, Instagram, Linkedin, Twitter } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import portfolioApi from '../api/portfolioApi';
+import { Social as SocialModel } from '../types';
 
 function Navigation() {
   const [activeSection, setActiveSection] = useState('home');
+  const [socials, setSocials] = useState<SocialModel[]>([]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,6 +29,12 @@ function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    portfolioApi.getSocials().then((data) => {
+      setSocials(data);
+    });
+  }, []);
+
   const navItems = [
     { id: 'home', label: 'Giriş' },
     { id: 'about', label: 'Hakkımda' },
@@ -39,6 +48,21 @@ function Navigation() {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
       setActiveSection(sectionId);
+    }
+  };
+
+    const getSocialIcon = (type: string) => {
+    switch (type) {
+      case 'GITHUB':
+        return <Github size={20} />;
+      case 'LINKEDIN':
+        return <Linkedin size={20} />;
+      case 'X':
+        return <Twitter size={20} />;
+      case 'INSTAGRAM':
+        return <Instagram size={20} />;
+      default:
+        return null;
     }
   };
 
@@ -64,7 +88,21 @@ function Navigation() {
       {/* Hero Social Links */}
       {activeSection === 'home' && (
         <div className="flex justify-center space-x-6 mb-12">
-          <a href="#" className="hover:text-blue-400 transition-colors">
+
+{
+socials.map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.url}
+                    target='_blank'
+                    className="hover:text-blue-400 transition-all transform hover:scale-110"
+                  >
+                    {getSocialIcon(social.type)}
+                  </a>
+                ))
+}
+
+          {/* <a href="#" className="hover:text-blue-400 transition-colors">
             <Github size={20} />
           </a>
           <a href="#" className="hover:text-blue-400 transition-colors">
@@ -75,7 +113,7 @@ function Navigation() {
           </a>
           <a href="#" className="hover:text-blue-400 transition-colors">
             <Instagram size={20} />
-          </a>
+          </a> */}
         </div>
       )}
 

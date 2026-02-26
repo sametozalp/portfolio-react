@@ -19,6 +19,7 @@ function Entrance() {
     portfolioApi.getEntrance().then((data) => {
       setEntranceData(data);
     });
+
   }, []);
 
   // const entranceData = {

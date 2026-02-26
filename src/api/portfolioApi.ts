@@ -16,6 +16,16 @@ export const portfolioApi = {
     const response = await api.get('/about');
     return response.data;
   },
+
+  getContact: async () => {
+    const response = await api.get('/contact');
+    return response.data;
+  },
+
+  getSocials: async () => {
+    const response = await api.get('/social');
+    return response.data;
+  },
 };
 
 export default portfolioApi;

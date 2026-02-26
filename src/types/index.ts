@@ -1,6 +1,6 @@
 export interface Social {
   id?: number;
-  socialMedia: 'GITHUB' | 'LINKEDIN' | 'X' | 'INSTAGRAM';
+  type: 'GITHUB' | 'LINKEDIN' | 'X' | 'INSTAGRAM';
   url: string;
 }
 

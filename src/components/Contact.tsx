@@ -1,11 +1,27 @@
-import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
-import React, { useState } from 'react';
+import { Github, Instagram, Linkedin, Mail, Twitter } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import portfolioApi from '../api/portfolioApi';
+import { Contact as ContactModel, Social as SocialModel } from '../types';
 
 interface ContactProps {
   showToast: (message: string, type?: 'success' | 'error' | 'info') => void;
 }
 
 function Contact({ showToast }: ContactProps) {
+
+  const [contactData, setContactData] = useState<ContactModel | null>(null);
+  const [socials, setSocials] = useState<SocialModel[]>([]);
+
+  useEffect(() => {
+    portfolioApi.getContact().then((data) => {
+      setContactData(data);
+    });
+
+    portfolioApi.getSocials().then((data) => {
+      setSocials(data);
+    });
+  }, []);
+
   const [contactSubmitting, setContactSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -13,17 +29,17 @@ function Contact({ showToast }: ContactProps) {
     message: ''
   });
 
-  const contactData = {
-    title: "İletişim",
-    description: "Yeni projeler ve iş birlikleri için her zaman açıkım. Aşağıdaki form üzerinden veya sosyal medya hesaplarımdan benimle iletişime geçebilirsiniz.",
-    myEmail: "samet@example.com"
-  };
+  // const contactData = {
+  //   title: "İletişim",
+  //   description: "Yeni projeler ve iş birlikleri için her zaman açıkım. Aşağıdaki form üzerinden veya sosyal medya hesaplarımdan benimle iletişime geçebilirsiniz.",
+  //   myEmail: "samet@example.com"
+  // };
 
-  const socials = [
-    { socialMedia: 'GITHUB', url: 'https://github.com/sametozalp' },
-    { socialMedia: 'LINKEDIN', url: 'https://linkedin.com/in/sametozalp' },
-    { socialMedia: 'X', url: 'https://twitter.com/sametozalp' }
-  ];
+  // const socials = [
+  //   { socialMedia: 'GITHUB', url: 'https://github.com/sametozalp' },
+  //   { socialMedia: 'LINKEDIN', url: 'https://linkedin.com/in/sametozalp' },
+  //   { socialMedia: 'X', url: 'https://twitter.com/sametozalp' }
+  // ];
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -48,14 +64,16 @@ function Contact({ showToast }: ContactProps) {
     }
   };
 
-  const getSocialIcon = (socialMedia: string) => {
-    switch (socialMedia) {
+  const getSocialIcon = (type: string) => {
+    switch (type) {
       case 'GITHUB':
         return <Github size={20} />;
       case 'LINKEDIN':
         return <Linkedin size={20} />;
       case 'X':
         return <Twitter size={20} />;
+      case 'INSTAGRAM':
+        return <Instagram size={20} />;
       default:
         return null;
     }
@@ -79,9 +97,10 @@ function Contact({ showToast }: ContactProps) {
                   <a
                     key={index}
                     href={social.url}
+                    target="_blank"
                     className="hover:text-blue-400 transition-all transform hover:scale-110"
                   >
-                    {getSocialIcon(social.socialMedia)}
+                    {getSocialIcon(social.type)}
                   </a>
                 ))}
               </div>
