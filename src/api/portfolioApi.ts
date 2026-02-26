@@ -35,6 +35,11 @@ export const portfolioApi = {
   getEducations: async () => {
     const response = await api.get('/education');
     return response.data;
+  },
+
+  getProjects: async () => {
+    const response = await api.get('/project');
+    return response.data;
   }
 };
 
