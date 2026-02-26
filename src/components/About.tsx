@@ -1,16 +1,28 @@
+import { useEffect, useState } from "react";
+import portfolioApi from "../api/portfolioApi";
+import { About as AboutModel } from "../types";
 
 function About() {
-  const aboutData = {
-    title: "Full Stack Developer",
-    description: "Modern web teknolojileri konusunda uzmanlaşmış, kullanıcı odaklı ve performanslı uygulamalar geliştiren yazılım mühendisi. React, Node.js ve cloud teknolojileri gibi alanlarda derin deneyime sahibim.",
-    profileImageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
-  };
 
-  const skills = [
-    "JavaScript", "TypeScript", "React", "Node.js", "Python", 
-    "Java", "Spring Boot", "PostgreSQL", "MongoDB", "Redis",
-    "Docker", "AWS", "Git", "Tailwind CSS", "Next.js"
-  ];
+  const [aboutData, setAboutData] = useState<AboutModel | null>(null);
+
+  useEffect(() => {
+    portfolioApi.getAbout().then((data) => {
+      setAboutData(data);
+    });
+  }, []);
+
+  // const aboutData = {
+  //   title: "Full Stack Developer",
+  //   description: "Modern web teknolojileri konusunda uzmanlaşmış, kullanıcı odaklı ve performanslı uygulamalar geliştiren yazılım mühendisi. React, Node.js ve cloud teknolojileri gibi alanlarda derin deneyime sahibim.",
+  //   profileImageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
+  // };
+
+  // const skills = [
+  //   "JavaScript", "TypeScript", "React", "Node.js", "Python", 
+  //   "Java", "Spring Boot", "PostgreSQL", "MongoDB", "Redis",
+  //   "Docker", "AWS", "Git", "Tailwind CSS", "Next.js"
+  // ];
 
   // const stats = [
   //   { number: '5+', label: 'Yıllık Deneyim' },
@@ -55,7 +67,7 @@ function About() {
             <div className="mb-8">
               <h4 className="font-semibold mb-4 text-gray-300">Teknik Skiller</h4>
               <div className="flex flex-wrap gap-2">
-                {skills?.map((skill, index) => (
+                {aboutData?.skills?.map((skill, index) => (
                   <span 
                     key={index} 
                     className="skill-tag px-4 py-1 rounded-full text-xs"

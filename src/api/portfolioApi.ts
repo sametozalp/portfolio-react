@@ -10,7 +10,12 @@ export const portfolioApi = {
   getEntrance: async () => {
     const response = await api.get('/entrance');
     return response.data;
-  }
+  },
+
+  getAbout: async () => {
+    const response = await api.get('/about');
+    return response.data;
+  },
 };
 
 export default portfolioApi;
