@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import About from './components/About';
 import Contact from './components/Contact';
+import Entrance from './components/Entrance';
 import Footer from './components/Footer';
-import Hero from './components/Hero';
 import Particles from './components/Particles';
 import ProjectDetail from './components/ProjectDetail';
 import Projects from './components/Projects';
@@ -44,7 +44,7 @@ const App: React.FC = () => {
       <Particles />
       
       <main>
-        <Hero />
+        <Entrance />
         <About />
         <Resume />
         {/* <Projects />

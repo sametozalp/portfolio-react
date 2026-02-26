@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
+import portfolioApi from '../api/portfolioApi';
+import { Entrance as EntranceType } from '../types';
 import Navigation from './Navigation';
 
-function Hero() {
+function Entrance() {
   const [isVisible, setIsVisible] = useState(false);
+  const [entranceData, setEntranceData] = useState<EntranceType | null>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -12,11 +15,17 @@ function Hero() {
     return () => clearTimeout(timer);
   }, []);
 
-  const entranceData = {
-    title: "Merhaba, ben",
-    fullName: "Samet Özalp",
-    description: "Full Stack Developer | React & Node.js Uzmanı"
-  };
+    useEffect(() => {
+    portfolioApi.getEntrance().then((data) => {
+      setEntranceData(data);
+    });
+  }, []);
+
+  // const entranceData = {
+  //   title: "Merhaba, ben",
+  //   fullName: "Samet Özalp",
+  //   description: "Full Stack Developer | React & Node.js Uzmanı"
+  // };
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center active-section">
@@ -26,9 +35,9 @@ function Hero() {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
-       {entranceData.title}{" "}
+       {entranceData?.title}{" "}
         <span className="gradient-text">
-          {entranceData.fullName}
+          {entranceData?.fullName}
         </span>
 
         </h1>
@@ -46,4 +55,4 @@ function Hero() {
   );
 };
 
-export default Hero;
+export default Entrance;
