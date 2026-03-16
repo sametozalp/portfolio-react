@@ -36,9 +36,9 @@ function About() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="relative">
             <div className="w-64 h-64 md:w-80 md:h-80 mx-auto rounded-2xl overflow-hidden border-2 border-blue-500/30">
-              <img 
-                src={aboutData?.profileImageUrl} 
-                alt="Profil Fotoğrafı" 
+              <img
+                src={aboutData?.profileImageUrl}
+                alt="Profil Fotoğrafı"
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
               />
             </div>
@@ -47,14 +47,14 @@ function About() {
               <p className="text-xs text-gray-300 uppercase">{stats[0].label}</p>
             </div> */}
           </div>
-          
+
           <div>
             <h2 className="text-sm uppercase tracking-widest text-blue-400 mb-2">Hakkımda</h2>
             <h3 className="text-4xl font-bold mb-6">{aboutData?.title}</h3>
             <p className="text-gray-400 mb-8 leading-relaxed">
               {aboutData?.description}
             </p>
-            
+
             {/* <div className="grid grid-cols-2 gap-4 mb-8">
               {stats.slice(1).map((stat, index) => (
                 <div key={index} className="bg-gray-800/60 border border-gray-600/50 p-4 rounded-lg backdrop-blur-sm shadow-md">
@@ -67,15 +67,18 @@ function About() {
             <div className="mb-8">
               <h4 className="font-semibold mb-4 text-gray-300">Teknik Skiller</h4>
               <div className="flex flex-wrap gap-2">
-                {aboutData?.skills?.map((skill, index) => (
-                  <span 
-                    key={index} 
-                    className="skill-tag px-4 py-1 rounded-full text-xs"
-                  >
-                  {/* {typeof skill === 'string' ? skill : skill.name} */}
-                  {skill}
-                  </span>
-                ))}
+
+                {aboutData?.skills
+                  ?.split(',')
+                  .map((skill, index) => (
+                    <span
+                      key={index}
+                      className="skill-tag px-4 py-1 rounded-full text-xs"
+                    >
+                      {skill.trim()}
+                    </span>
+                  ))
+                }
               </div>
             </div>
           </div>

@@ -40,6 +40,11 @@ export const portfolioApi = {
   getProjects: async () => {
     const response = await api.get('/project');
     return response.data;
+  },
+
+  getCopyright: async () => {
+    const response = await api.get('/copyright');
+    return response.data;
   }
 };
 

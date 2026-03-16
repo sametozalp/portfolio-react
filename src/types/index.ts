@@ -62,7 +62,7 @@ export interface Contact {
 
 export interface About {
   id?: number;
-  skills: string[];
+  skills: string;
   description: string;
   title: string;
   profileImageUrl: string;

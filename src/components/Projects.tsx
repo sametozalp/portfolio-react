@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import portfolioApi from '../api/portfolioApi';
 
+interface ProjectImage {
+  id?: number;
+  url: string;
+  isCoverImage: boolean;
+  orderNumber: number;
+  showable: boolean;
+
+}
+
 interface Project {
   id?: number;
   title: string;
   summary: string;
   description: string;
-  features: string[];
-  images: string[];
+  features: string;
+  images: ProjectImage[];
   projectDate: string;
-  techStack: string[];
+  techStack: string;
   liveDemoUrl?: string;
   sourceCodeUrl?: string;
   coverImage?: string;
@@ -148,7 +157,7 @@ const Projects: React.FC<ProjectsProps> = ({ onProjectClick }) => {
               onClick={() => handleProjectClick(project)}
             >
               <img
-                src={project.coverImage}
+                src={project.images?.find((img: any) => img.isCoverImage)?.url}
                 alt={project.title}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
