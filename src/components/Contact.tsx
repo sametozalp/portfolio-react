@@ -54,12 +54,15 @@ function Contact({ showToast }: ContactProps) {
     setContactSubmitting(true);
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await portfolioApi.submitContact(formData);
       showToast('Mesajınız başarıyla iletildi!', 'success');
       setFormData({ name: '', email: '', message: '' });
     } catch (error: any) {
-      showToast(error || 'Mesaj gönderilemedi. Lütfen tekrar deneyin.', 'error');
+      const errorMessage =
+        error?.response?.data?.message ||
+        error?.message ||
+        'Mesaj gönderilemedi. Lütfen tekrar deneyin.';
+      showToast(errorMessage, 'error');
     } finally {
       setContactSubmitting(false);
     }

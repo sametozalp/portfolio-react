@@ -3,7 +3,7 @@ import api from './axios';
 
 export const portfolioApi = {
   submitContact: async (formData: ContactFormData) => {
-    const response = await api.post('/contact', formData);
+    const response = await api.post('/contact/send', formData);
     return response.data;
   },
 
