@@ -1,7 +1,8 @@
-import { Github, Instagram, Linkedin, Mail, Twitter } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import portfolioApi from '../api/portfolioApi';
 import { Contact as ContactModel, Social as SocialModel } from '../types';
+import { getSocialIcon } from '../utils/getSocialIcon';
 
 interface ContactProps {
   showToast: (message: string, type?: 'success' | 'error' | 'info') => void;
@@ -51,7 +52,7 @@ function Contact({ showToast }: ContactProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setContactSubmitting(true);
-    
+
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
@@ -61,21 +62,6 @@ function Contact({ showToast }: ContactProps) {
       showToast(error || 'Mesaj gönderilemedi. Lütfen tekrar deneyin.', 'error');
     } finally {
       setContactSubmitting(false);
-    }
-  };
-
-  const getSocialIcon = (type: string) => {
-    switch (type) {
-      case 'GITHUB':
-        return <Github size={20} />;
-      case 'LINKEDIN':
-        return <Linkedin size={20} />;
-      case 'X':
-        return <Twitter size={20} />;
-      case 'INSTAGRAM':
-        return <Instagram size={20} />;
-      default:
-        return null;
     }
   };
 
@@ -97,16 +83,15 @@ function Contact({ showToast }: ContactProps) {
                   <a
                     key={index}
                     href={social.url}
-                    target="_blank"
                     className="hover:text-blue-400 transition-all transform hover:scale-110"
                   >
-                    {getSocialIcon(social.type)}
+                    {getSocialIcon(social.platform)}
                   </a>
                 ))}
               </div>
             </div>
           </div>
-          
+
           <div className="glass p-8 rounded-2xl">
             <form onSubmit={handleSubmit} className="space-y-4">
               <input

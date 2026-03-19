@@ -1,7 +1,8 @@
-import { ChevronDown, Github, Instagram, Linkedin, Twitter } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import portfolioApi from '../api/portfolioApi';
 import { Social as SocialModel } from '../types';
+import { getSocialIcon } from '../utils/getSocialIcon';
 
 function Navigation() {
   const [activeSection, setActiveSection] = useState('home');
@@ -51,21 +52,6 @@ function Navigation() {
     }
   };
 
-  const getSocialIcon = (type: string) => {
-    switch (type) {
-      case 'GITHUB':
-        return <Github size={20} />;
-      case 'LINKEDIN':
-        return <Linkedin size={20} />;
-      case 'X':
-        return <Twitter size={20} />;
-      case 'INSTAGRAM':
-        return <Instagram size={20} />;
-      default:
-        return null;
-    }
-  };
-
   return (
     <>
       {/* Centered Navigation */}
@@ -88,18 +74,15 @@ function Navigation() {
       {activeSection === 'home' && (
         <div className="flex justify-center space-x-6 mb-12">
 
-          {
-            socials.map((social, index) => (
-              <a
-                key={index}
-                href={social.url}
-                target='_blank'
-                className="hover:text-blue-400 transition-all transform hover:scale-110"
-              >
-                {getSocialIcon(social.type)}
-              </a>
-            ))
-          }
+          {socials.map((social, index) => (
+            <a
+              key={index}
+              href={social.url}
+              className="hover:text-blue-400 transition-all transform hover:scale-110"
+            >
+              {getSocialIcon(social.platform)}
+            </a>
+          ))}
         </div>
       )}
 

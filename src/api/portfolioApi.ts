@@ -23,7 +23,7 @@ export const portfolioApi = {
   },
 
   getSocials: async () => {
-    const response = await api.get('/social');
+    const response = await api.get('/social/all');
     return response.data;
   },
 
